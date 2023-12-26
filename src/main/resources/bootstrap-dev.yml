@@ -2,8 +2,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        namespace: eb0365e9-3304-4ffa-9553-70165feee22e
+        namespace: 53d45e8e-d83d-48dd-ad42-881d9e6860c6
         server-addr: 127.0.0.1:8848
       config:
-        namespace: eb0365e9-3304-4ffa-9553-70165feee22e
+        namespace: 53d45e8e-d83d-48dd-ad42-881d9e6860c6
         server-addr: 127.0.0.1:8848
