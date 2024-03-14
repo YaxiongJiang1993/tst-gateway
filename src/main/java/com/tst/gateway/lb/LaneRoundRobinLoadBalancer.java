@@ -16,16 +16,12 @@ package com.tst.gateway.lb;
  * limitations under the License.
  */
 
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-
 import com.tst.gateway.constant.LaneHttpConstant;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.*;
 import org.springframework.cloud.loadbalancer.core.NoopServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.core.ReactorServiceInstanceLoadBalancer;
@@ -34,17 +30,18 @@ import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.cloud.client.ServiceInstance;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * A Round-Robin-based implementation of {@link ReactorServiceInstanceLoadBalancer}.
  *
  * @author david
  */
+@Slf4j
 public class LaneRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBalancer {
-
-    private static final Log log = LogFactory.getLog(LaneRoundRobinLoadBalancer.class);
 
     final AtomicInteger position;
 
@@ -123,7 +120,7 @@ public class LaneRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
 
         // 没有main泳道 在所有可用服务选择一个
         if (CollectionUtils.isEmpty(instances)) {
-            log.info("getInstanceResponse serviceGroup:" + serviceGroup + " has no main lane");
+            log.info("getInstanceResponse serviceGroup: {} has no main lane", serviceGroup);
             instances = instancesChoose;
         }
 
