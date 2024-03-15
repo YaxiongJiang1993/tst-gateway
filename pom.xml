@@ -13,7 +13,16 @@
     <artifactId>tst-gateway</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <tst-gaia-loadbalancer.version>1.0-SNAPSHOT</tst-gaia-loadbalancer.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>com.davih.tst</groupId>
+            <artifactId>tst-gaia-loadbalancer</artifactId>
+            <version>${tst-gaia-loadbalancer.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
