@@ -1,0 +1,19 @@
+# 路由配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        # tst-bff
+        - id: tst-bff
+          uri: lb://tst-bff
+          predicates:
+            - Path=/bff/**
+        # tst-user
+        - id: tst-user
+          uri: lb://tst-user
+          predicates:
+            - Lane=X-Service-Group,user
+          fiters:
+            - Lane=test
+server:
+    port: 8080
